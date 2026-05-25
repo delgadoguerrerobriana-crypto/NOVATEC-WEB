@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Hace que la página se vea bien en celulares y tablets (diseño responsive) -->
+    <title>NovaTec Solutions | Innovamos para transformar tu mundo</title>
+    <meta name="description" content="NovaTec Solutions - Soluciones tecnológicas personalizadas para microempresas y PYMES mexicanas. Desarrollo de software, IA y transformación digital.">
+    <!-- ============================================
+         FAVICON
+         Icono pequeño que aparece en la pestaña del navegador
+         ============================================ -->
+    <link rel="icon" type="image/jpeg" href="ImagenesVideos/NovaTec_Logo.jpg">
+
+    <!-- ============================================
+         FUENTES DE GOOGLE
+         Tipografías profesionales cargadas desde internet
+         ============================================ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- preconnect hace que las fuentes carguen más rápido (conexión anticipada) -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Montserrat: para títulos (elegante y moderna) -->
+    <!-- Open Sans: para texto normal (fácil de leer) -->
+
+    <!-- ============================================
+         ICONOS (Font Awesome)
+         Biblioteca de iconos vectoriales (logos, símbolos, flechas)
+         ============================================ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- ============================================
+         AOS - ANIMACIONES AL HACER SCROLL
+         Biblioteca que hace que los elementos aparezcan
+         con animación cuando el usuario baja la página
+         ============================================ -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- ============================================
+         ESTILOS CSS PROPIOS
+         Archivo donde están todos los colores, tamaños,
+         posiciones y animaciones de la página
+         ============================================ -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- ============================================
+         EMAILJS SDK
+         Biblioteca para enviar correos electrónicos reales
+         desde el formulario de contacto sin necesidad
+         de servidor backend. Usa el servicio EmailJS.
+         ============================================ -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    
+    <base target="_blank">
+<base target="_blank">
+</head>
+
+<body>
+    <!-- ============================================
+         PANTALLA DE CARGA (LOADING SCREEN)
+         Aparece al inicio mientras la página carga,
+         luego desaparece con una animación suave
+         ============================================ -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <!-- Logo animado con efecto de pulso (latido) -->
+            <img src="ImagenesVideos/NovaTec_Logo.jpg" alt="NovaTec" class="loading-logo">
+            <!-- Barra de progreso que se llena de izquierda a derecha -->
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+            <p class="loading-text">Cargando experiencia NovaTec...</p>
+        </div>
+    </div>
+
+    <!-- ============================================
+         BOTÓN DE AUDIO AMBIENTAL
+         Permite al usuario activar/desactivar música de fondo
+         Posición fija: siempre visible en la esquina inferior derecha
+         ============================================ -->
+    <div class="audio-control" id="audioControl">
+        <button class="audio-btn" id="audioBtn" title="Activar/Desactivar sonido ambiental" aria-label="Control de audio">
+            <!-- Icono que cambia: muted (silenciado) / up (activo) -->
+            <i class="fas fa-volume-mute" id="audioIcon"></i>
+        </button>
+        <!-- Tooltip: texto que aparece al pasar el mouse -->
+        <span class="audio-tooltip">Sonido ambiental</span>
+    </div>
+
+    <!-- ============================================
+         BARRA DE NAVEGACIÓN (NAVBAR)
+         Menú principal fijo en la parte superior.
+         Se mantiene visible al hacer scroll y cambia
+         de transparente a oscuro cuando bajas
+         ============================================ -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <!-- Logo + nombre: clic lleva al inicio de la página (scroll suave) -->
+            <a href="#inicio" class="nav-logo" data-scroll>
+                <img src="ImagenesVideos/NovaTec_Logo.jpg" alt="NovaTec Logo" class="logo-img" width="45" height="45">
+                <span class="logo-text">NovaTec</span>
+            </a>
+
+            <!-- Menú de enlaces: cada uno lleva a una sección con scroll suave -->
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#inicio" class="nav-link active" data-scroll>Inicio</a></li>
+                <li><a href="#nosotros" class="nav-link" data-scroll>Nosotros</a></li>
+                <li><a href="#servicios" class="nav-link" data-scroll>Servicios</a></li>
+                <li><a href="#portafolio" class="nav-link" data-scroll>Portafolio</a></li>
+                <li><a href="#identidad" class="nav-link" data-scroll>Identidad Corporativa</a></li>
+                <li><a href="#medios" class="nav-link" data-scroll>Medios</a></li>
+                <li><a href="#mision-vision" class="nav-link" data-scroll>Misión y Visión</a></li>
+                <li><a href="#valores" class="nav-link" data-scroll>Valores</a></li>
+                <li><a href="#contacto" class="nav-link" data-scroll>Contacto</a></li>
+            </ul>
+
+            <!-- Botón hamburguesa: solo visible en celulares (abre/cierra menú) -->
+            <div class="nav-toggle" id="navToggle" aria-label="Menú de navegación">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============================================
+         SECCIÓN PRINCIPAL (HERO)
+         Primera impresión del sitio: video de fondo,
+         logo grande, título, slogan y botones de acción
+         ============================================ -->
+    <section class="hero" id="inicio">
+        <!-- Video de fondo que se reproduce automáticamente y en loop -->
+        <div class="video-background">
+            <video autoplay muted loop playsinline id="bgVideo" class="bg-video">
+                <!-- playsinline: evita que el video se abra en pantalla completa en iPhone -->
+                <source src="ImagenesVideos/Fondo Tec.mp4" type="video/mp4">
+                <source src="ImagenesVideos/Fondo Tec.webm" type="video/webm">
+                <!-- Segunda opción (webm) por si el navegador no soporta mp4 -->
+                Tu navegador no soporta videos HTML5.
+            </video>
+            <!-- Capa oscura encima del video para que el texto sea legible -->
+            <div class="video-overlay"></div>
+        </div>
+
+        <!-- Canvas: área de dibujo para las partículas animadas (efecto tecnológico) -->
+        <canvas id="particlesCanvas" class="particles-canvas"></canvas>
+
+        <!-- Contenido centrado: logo, título, slogan, botones -->
+        <div class="hero-content">
+            <!-- Logo grande con animación de entrada (fade-down) -->
+            <div class="hero-logo" data-aos="fade-down" data-aos-duration="1000">
+                <img src="ImagenesVideos/NovaTec_Logo.jpg" alt="NovaTec Solutions" width="150" height="150">
+            </div>
+            <!-- Título principal con efecto de degradado -->
+            <h1 class="hero-title" data-aos="fade-up" data-aos-delay="200">NovaTec Solutions</h1>
+            <!-- Slogan con efecto typewriter (se escribe letra por letra) -->
+            <p class="hero-slogan" data-aos="fade-up" data-aos-delay="400">"Innovamos para transformar tu mundo"</p>
+            <!-- Descripción breve de la empresa -->
+            <p class="hero-description" data-aos="fade-up" data-aos-delay="600">
+                Soluciones tecnológicas personalizadas para microempresas y PYMES mexicanas. 
+                Desarrollo de software, inteligencia artificial y transformación digital.
+            </p>
+            <!-- Botones de acción: llevan a Servicios o Contacto -->
+            <div class="hero-buttons" data-aos="fade-up" data-aos-delay="800">
+                <a href="#servicios" class="btn btn-primary" data-scroll>Nuestros Servicios</a>
+                <a href="#contacto" class="btn btn-secondary" data-scroll>Contáctanos</a>
+            </div>
+        </div>
+
+        <!-- Flecha animada que invita a bajar (scroll) -->
+        <div class="scroll-indicator" id="scrollIndicator">
+            <i class="fas fa-chevron-down bounce"></i>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECCIÓN NOSOTROS
+         Historia de la empresa, fundadora, estadísticas
+         y botón para ver el organigrama
+         ============================================ -->
+    <section class="about" id="nosotros">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag"><i class="fas fa-building"></i> Quiénes Somos</span>
+                <h2 class="section-title">Sobre NovaTec Solutions</h2>
+                <div class="section-line"></div>
+            </div>
+
+            <div class="about-content">
+                <!-- Columna izquierda: imagen con tarjeta flotante -->
+                <div class="about-image" data-aos="fade-right">
+                    <img src="ImagenesVideos/NovaTec_Logo.jpg" alt="NovaTec Logo" style="border: 3px solid #00d4aa; padding: 10px;" width="400" height="400">
+                    <!-- Tarjeta flotante con animación de levitación -->
+                    <div class="about-float-card">
+                        <i class="fas fa-rocket"></i>
+                        <span>Desde 2025</span>
+                    </div>
+                </div>
+
+                <!-- Columna derecha: texto y estadísticas -->
+                <div class="about-text" data-aos="fade-left">
+                    <h3>Tecnología con Propósito</h3>
+                    <p>
+                        NovaTec Solutions S.A. de C.V. nace en el año 2025 bajo la visión y liderazgo de 
+                        <strong>Briana Antonella Delgado Guerrero</strong>, joven emprendedora apasionada por la tecnología 
+                        y la innovación.
+                    </p>
+                    <p>
+                        Nos especializamos en el desarrollo de <strong>software, aplicaciones móviles, consultoría tecnológica, 
+                        automatización de procesos e implementación de inteligencia artificial</strong> para microempresas 
+                        y PYMES mexicanas.
+                    </p>
+
+                    <!-- Estadísticas con contador animado -->
+                    <div class="about-stats" data-aos="fade-up" data-aos-delay="200">
+                        <div class="stat">
+                            <span class="stat-number">11</span>
+                            <span class="stat-label">Colaboradores</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">6</span>
+                            <span class="stat-label">Servicios</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">100%</span>
+                            <span class="stat-label">Compromiso</span>
+                        </div>
+                    </div>
+
+                    <!-- Botón que abre el modal del organigrama -->
+                    <button class="btn btn-primary organigrama-btn" id="organigramaBtn" data-aos="fade-up" data-aos-delay="300">
+                        <i class="fas fa-sitemap"></i> Ver Organigrama Empresarial
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         MODAL DEL ORGANIGRAMA
+         Ventana emergente que muestra la estructura
+         organizacional de la empresa
+         ============================================ -->
+    <div class="modal" id="organigramaModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-sitemap"></i> Organigrama NovaTec Solutions</h3>
+                <button class="modal-close" id="modalClose" aria-label="Cerrar modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <img src="ImagenesVideos/OrganigramaGeneral.png" alt="Organigrama NovaTec Solutions" class="organigrama-img">
+                <p class="modal-caption">Estructura organizacional de NovaTec Solutions S.A. de C.V.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         SECCIÓN SERVICIOS
+         Los 6 servicios que ofrece la empresa,
+         cada uno con icono, descripción y precio
+         ============================================ -->
+    <section class="services" id="servicios">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag"><i class="fas fa-cogs"></i> Lo Que Ofrecemos</span>
+                <h2 class="section-title">Nuestros Servicios</h2>
+                <div class="section-line"></div>
+            </div>
+
+            <!-- Grid de 6 tarjetas de servicios -->
+            <div class="services-grid">
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Apps Móviles y Web</h3>
+                    <p>Desarrollo de aplicaciones móviles y sistemas web personalizados, seguros y escalables.</p>
+                </div>
+
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>Automatización</h3>
+                    <p>Automatización de procesos empresariales mediante software e inteligencia artificial.</p>
+                </div>
+
+                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Inteligencia Artificial</h3>
+                    <p>Implementación y mantenimiento de sistemas de IA para análisis y predicción.</p>
+                </div>
+
+                <div class="service-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="service-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Consultoría Digital</h3>
+                    <p>Consultoría tecnológica para la digitalización de negocios tradicionales.</p>
+                </div>
+
+                <div class="service-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="service-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Soporte Técnico</h3>
+                    <p>Soporte técnico remoto y presencial con orientación en ciberseguridad.</p>
+                </div>
+
+                <div class="service-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="service-icon">
+                        <i class="fas fa-chalkboard-user"></i>
+                    </div>
+                    <h3>Capacitación</h3>
+                    <p>Cursos y talleres de capacitación tecnológica para el personal de tu empresa.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECCIÓN PORTAFOLIO
+         Galería de diseños de productos y marketing:
+         envases, etiquetas, bolsas y volantes
+         ============================================ -->
+    <section class="portfolio" id="portafolio">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag"><i class="fas fa-images"></i> Nuestro Trabajo</span>
+                <h2 class="section-title">Portafolio de Diseños</h2>
+                <div class="section-line"></div>
+            </div>
+
+            <div class="portfolio-grid">
+                <!-- Diseño de Envase (Productos) -->
+                <div class="portfolio-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="portfolio-image">
+                        <img src="ImagenesVideos/DiseñoEnvase_Paquete.png" alt="Diseño de Envase y Paquete">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-info">
+                                <i class="fas fa-box-open"></i>
+                                <h3>Diseño de Envase</h3>
+                                <p>Empaque innovador para productos tecnológicos</p>
+                                <button class="portfolio-btn" onclick="openLightbox(this)">
+                                    <i class="fas fa-expand"></i> Ver detalle
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="portfolio-category">Productos</span>
+                </div>
+
+                <!-- Etiqueta de Productos (Productos) -->
+                <div class="portfolio-item" data-aos="fade-up" data-aos-delay="150">
+                    <div class="portfolio-image">
+                        <img src="ImagenesVideos/EtiquetaProductos.jpg" alt="Etiqueta de Productos">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-info">
+                                <i class="fas fa-tag"></i>
+                                <h3>Etiqueta de Productos</h3>
+                                <p>Diseño gráfico profesional para identificación</p>
+                                <button class="portfolio-btn" onclick="openLightbox(this)">
+                                    <i class="fas fa-expand"></i> Ver detalle
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="portfolio-category">Productos</span>
+                </div>
+
+                <!-- Bolsa Ecológica (Marketing) -->
+                <div class="portfolio-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="portfolio-image">
+                        <img src="ImagenesVideos/BolsaEcológica.png" alt="Bolsa Ecológica">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-info">
+                                <i class="fas fa-shopping-bag"></i>
+                                <h3>Bolsa Ecológica</h3>
+                                <p>Empaque sostenible con identidad de marca</p>
+                                <button class="portfolio-btn" onclick="openLightbox(this)">
+                                    <i class="fas fa-expand"></i> Ver detalle
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="portfolio-category">Marketing</span>
+                </div>
+
+                <!-- Volante Publicitario (Marketing) -->
+                <div class="portfolio-item" data-aos="fade-up" data-aos-delay="250">
+                    <div class="portfolio-image">
+                        <img src="ImagenesVideos/Volante.png" alt="Volante Publicitario">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-info">
+                                <i class="fas fa-file-alt"></i>
+                                <h3>Volante Publicitario</h3>
+                                <p>Material promocional para campañas de difusión</p>
+                                <button class="portfolio-btn" onclick="openLightbox(this)">
+                                    <i class="fas fa-expand"></i> Ver detalle
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="portfolio-category">Marketing</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECCIÓN IDENTIDAD CORPORATIVA
+         Elementos visuales de la marca:
+         logo, uniforme, gafetes y papelería
+         ============================================ -->
+    <section class="identity" id="identidad">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag"><i class="fas fa-fingerprint"></i> Nuestra Marca</span>
+                <h2 class="section-title">Identidad Corporativa</h2>
+                <div class="section-line"></div>
+            </div>
+
+            <!-- Texto introductorio centrado -->
+            <p class="identity-intro" data-aos="fade-up">
+                La identidad visual de NovaTec Solutions refleja nuestra esencia innovadora y profesional. 
+                Cada elemento está diseñado para transmitir confianza, tecnología y compromiso.
+            </p>
+
+            <!-- Grid de 4 tarjetas de identidad -->
+            <div class="identity-grid">
+                <!-- Logo Corporativo -->
+                <div class="identity-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="identity-image">
+                        <img src="ImagenesVideos/NovaTec_Logo.jpg" alt="Logo NovaTec Solutions">
+                        <div class="identity-overlay">
+                            <button class="identity-btn" onclick="openLightbox(this)">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="identity-content">
+                        <i class="fas fa-star identity-icon"></i>
+                        <h3>Logo Corporativo</h3>
+                        <p>Símbolo distintivo que representa innovación y excelencia tecnológica.</p>
+                    </div>
+                </div>
+
+                <!-- Uniforme Empresarial -->
+                <div class="identity-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="identity-image">
+                        <img src="ImagenesVideos/Uniforme.jpg" alt="Uniforme NovaTec">
+                        <div class="identity-overlay">
+                            <button class="identity-btn" onclick="openLightbox(this)">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="identity-content">
+                        <i class="fas fa-tshirt identity-icon"></i>
+                        <h3>Uniforme Empresarial</h3>
+                        <p>Vestimenta profesional que proyecta imagen corporativa unificada.</p>
+                    </div>
+                </div>
+
+                <!-- Gafetes de Identificación -->
+                <div class="identity-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="identity-image">
+                        <img src="ImagenesVideos/Gafetes.png" alt="Gafetes NovaTec">
+                        <div class="identity-overlay">
+                            <button class="identity-btn" onclick="openLightbox(this)">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="identity-content">
+                        <i class="fas fa-id-badge identity-icon"></i>
+                        <h3>Gafetes de Identificación</h3>
+                        <p>Identificación oficial para personal y visitantes.</p>
+                    </div>
+                </div>
+
+                <!-- Papelería Corporativa -->
+                <div class="identity-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="identity-image">
+                        <img src="ImagenesVideos/Carpeta.jpg" alt="Carpeta Corporativa NovaTec">
+                        <div class="identity-overlay">
+                            <button class="identity-btn" onclick="openLightbox(this)">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="identity-content">
+                        <i class="fas fa-folder-open identity-icon"></i>
+                        <h3>Papelería Corporativa</h3>
+                        <p>Carpeta oficial para documentos y presentaciones empresariales.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECCIÓN MEDIOS
+         Video publicitario de la empresa con
+         información de producción y calidad
+         ============================================ -->
+    <section class="media-section" id="medios">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag"><i class="fas fa-video"></i> En los Medios</span>
+                <h2 class="section-title">Publicidad NovaTec</h2>
+                <div class="section-line"></div>
+            </div>
+
+            <div class="media-content" data-aos="zoom-in" data-aos-delay="200">
+                <!-- Contenedor del video con poster (imagen previa) -->
+                <div class="media-video-container">
+                    <video controls poster="ImagenesVideos/NovaTec_Logo.jpg" class="media-video">
+                        <source src="ImagenesVideos/Publicidad Televisión.mp4" type="video/mp4">
+                        Tu navegador no soporta videos HTML5.
+                    </video>
+                    <!-- Insignia flotante sobre el video -->
+                    <div class="media-badge">
+                        <i class="fas fa-tv"></i>
+                        <span>Spot Publicitario</span>
+                    </div>
+                </div>
+
+                <!-- Descripción y estadísticas del video -->
+                <div class="media-description">
+                    <h3><i class="fas fa-broadcast-tower"></i> Campaña Publicitaria 2025</h3>
+                    <p>
+                        Nuestro spot publicitario refleja la esencia innovadora de NovaTec Solutions. 
+                        Diseñado para transmitir confianza, tecnología de punta y compromiso con el 
+                        desarrollo empresarial mexicano.
+                    </p>
+                    <div class="media-stats">
+                        <div class="media-stat">
+                            <span class="media-stat-number">HD</span>
+                            <span class="media-stat-label">Calidad</span>
+                        </div>
+                        <div class="media-stat">
+                            <span class="media-stat-number">2025</span>
+                            <span class="media-stat-label">Producción</span>
+                        </div>
+                        <div class="media-stat">
+                            <span class="media-stat-number">TV+Web</span>
+                            <span class="media-stat-label">Difusión</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECCIÓN MISIÓN Y VISIÓN
+         Declaraciones fundamentales de la empresa
+         ============================================ -->
+    <section class="mission-vision" id="mision-vision">
+        <div class="container">
+            <div class="mv-grid">
+                <!-- Tarjeta de Misión -->
+                <div class="mv-card mission" data-aos="fade-right">
+                    <div class="mv-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Misión</h3>
+                    <p>
+                        Desarrollar soluciones tecnológicas personalizadas y accesibles que impulsen el crecimiento 
+                        de empresas y emprendedores, promoviendo la excelencia, la responsabilidad social y el 
+                        bienestar de nuestros colaboradores.
+                    </p>
+                </div>
+
+                <!-- Tarjeta de Visión -->
+                <div class="mv-card vision" data-aos="fade-left">
+                    <div class="mv-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Visión</h3>
+                    <p>
+                        Ser la empresa tecnológica mexicana con mayor impacto e innovación en Latinoamérica, 
+                        reconocida por su calidad, compromiso ético y contribución al desarrollo tecnológico y social.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECCIÓN VALORES
+         Los 10 valores corporativos representados
+         con iconos en tarjetas interactivas
+         ============================================ -->
+    <section class="values" id="valores">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag"><i class="fas fa-heart"></i> Nuestra Esencia</span>
+                <h2 class="section-title">Valores Corporativos</h2>
+                <div class="section-line"></div>
+            </div>
+
+            <!-- Grid de 10 valores -->
+            <div class="values-grid">
+                <div class="value-item" data-aos="fade-up" data-aos-delay="50">
+                    <i class="fas fa-lightbulb"></i>
+                    <span>Innovación</span>
+                </div>
+                <div class="value-item" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-handshake"></i>
+                    <span>Responsabilidad</span>
+                </div>
+                <div class="value-item" data-aos="fade-up" data-aos-delay="150">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Integridad</span>
+                </div>
+                <div class="value-item" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-people-group"></i>
+                    <span>Trabajo en Equipo</span>
+                </div>
+                <div class="value-item" data-aos="fade-up" data-aos-delay="250">
+                    <i class="fas fa-hand-holding-heart"></i>
+                    <span>Respeto</span>
+                </div>
+                <div class="value-item" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fas fa-balance-scale"></i>
+                    <span>Honestidad</span>
+                </div>
+                <div class="value-item" data-aos="fade-up" data-aos-delay="350">
+                    <i class="fas fa-globe"></i>
+                    <span>Compromiso Social</span>
+                </div>
+                <div class="value-item" data-aos="fade-up" data-aos-delay="400">
+                    <i class="fas fa-clock"></i>
+                    <span>Puntualidad</span>
+                </div>
+                <div class="value-item" data-aos="fade-up" data-aos-delay="450">
+                    <i class="fas fa-sync-alt"></i>
+                    <span>Adaptabilidad</span>
+                </div>
+                <div class="value-item" data-aos="fade-up" data-aos-delay="500">
+                    <i class="fas fa-smile"></i>
+                    <span>Servicio al Cliente</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECCIÓN CONTACTO (MEJORADA)
+         Formulario funcional con envío real de correos
+         mediante EmailJS. Los mensajes llegan al Gmail
+         de la empresa: contacto@novatecsolutions.mx
+         ============================================ -->
+    <section class="contact" id="contacto">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag"><i class="fas fa-envelope"></i> Estamos para ti</span>
+                <h2 class="section-title">Contacto</h2>
+                <div class="section-line"></div>
+            </div>
+
+            <div class="contact-content">
+                <!-- Columna izquierda: datos de contacto -->
+                <div class="contact-info" data-aos="fade-right">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Ubicación</h4>
+                            <p>San Manuel, 82139 Mazatlán, Sin.</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Teléfono</h4>
+                            <p>+52 669 325 1690</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>contacto@novatecsolutions.mx</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-globe"></i>
+                        <div>
+                            <h4>Web</h4>
+                            <p>www.novatecsolutions.mx</p>
+                        </div>
+                    </div>
+
+                    <!-- ============================================
+                         REDES SOCIALES - ICONOS PUROS (MEJORADO)
+                         Solo iconos Font Awesome, sin imágenes externas.
+                         Diseño minimalista que no sobrecarga la página.
+                         ============================================ -->
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/profile.php?id=61590451016767" class="social-btn social-facebook" title="Facebook" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/novatecsolutionsmx/" class="social-btn social-instagram" title="Instagram" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://x.com/Innovamospar" class="social-btn social-twitter" title="Twitter / X" aria-label="Twitter" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-x-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- ============================================
+                     FORMULARIO DE CONTACTO FUNCIONAL (MEJORADO)
+                     Integración con EmailJS para envío real.
+                     Incluye validación, estados de carga y notificaciones.
+                     ============================================ -->
+                <div class="contact-form" data-aos="fade-left">
+                    <form id="contactForm" novalidate>
+                        <!-- Campo de nombre -->
+                        <div class="form-group">
+                            <input type="text" id="nombre" name="nombre" required placeholder=" " minlength="2" maxlength="100">
+                            <label for="nombre">Nombre completo</label>
+                            <span class="form-error" id="error-nombre"></span>
+                        </div>
+                        <!-- Campo de email -->
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" required placeholder=" " maxlength="100">
+                            <label for="email">Correo electrónico</label>
+                            <span class="form-error" id="error-email"></span>
+                        </div>
+                        <!-- Campo de asunto (nuevo) -->
+                        <div class="form-group">
+                            <input type="text" id="asunto" name="asunto" required placeholder=" " minlength="3" maxlength="150">
+                            <label for="asunto">Asunto</label>
+                            <span class="form-error" id="error-asunto"></span>
+                        </div>
+                        <!-- Campo de mensaje -->
+                        <div class="form-group">
+                            <textarea id="mensaje" name="mensaje" rows="4" required placeholder=" " minlength="10" maxlength="1000"></textarea>
+                            <label for="mensaje">Mensaje</label>
+                            <span class="form-error" id="error-mensaje"></span>
+                            <span class="char-counter" id="charCounter">0 / 1000</span>
+                        </div>
+                        <!-- Botón de envío con estado de carga -->
+                        <button type="submit" class="btn btn-primary btn-full" id="submitBtn">
+                            <span class="btn-text"><i class="fas fa-paper-plane"></i> Enviar Mensaje</span>
+                            <span class="btn-loader" style="display:none;">
+                                <i class="fas fa-spinner fa-spin"></i> Enviando...
+                            </span>
+                        </button>
+                    </form>
+                    
+                    <!-- Mensaje de éxito (oculto inicialmente) -->
+                    <div class="form-success" id="formSuccess" style="display:none;">
+                        <i class="fas fa-check-circle"></i>
+                        <h4>¡Mensaje enviado con éxito!</h4>
+                        <p>Gracias por contactarnos. Te responderemos a la brevedad.</p>
+                        <button class="btn btn-secondary" id="newMessageBtn">
+                            <i class="fas fa-redo"></i> Enviar otro mensaje
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         FOOTER (PIE DE PÁGINA)
+         Información final: logo, enlaces rápidos,
+         servicios, marca registrada y derechos
+         ============================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Columna 1: marca y descripción -->
+                <div class="footer-brand">
+                    <img src="ImagenesVideos/NovaTec_Logo.jpg" alt="NovaTec" width="60" height="60">
+                    <p>Innovamos para transformar tu mundo.</p>
+                    <!-- Marca registrada -->
+                    <div class="footer-marca">
+                        <img src="ImagenesVideos/MarcaRegistrada.png" alt="Marca Registrada" class="marca-registrada-img">
+                        <span>Marca Registrada © 2025</span>
+                    </div>
+                </div>
+                <!-- Columna 2: enlaces rápidos (scroll suave) -->
+                <div class="footer-links">
+                    <h4>Enlaces Rápidos</h4>
+                    <ul>
+                        <li><a href="#inicio" data-scroll>Inicio</a></li>
+                        <li><a href="#nosotros" data-scroll>Nosotros</a></li>
+                        <li><a href="#servicios" data-scroll>Servicios</a></li>
+                        <li><a href="#contacto" data-scroll>Contacto</a></li>
+                    </ul>
+                </div>
+                <!-- Columna 3: enlaces a servicios (scroll suave) -->
+                <div class="footer-links">
+                    <h4>Servicios</h4>
+                    <ul>
+                        <li><a href="#servicios" data-scroll>Desarrollo Web</a></li>
+                        <li><a href="#servicios" data-scroll>Apps Móviles</a></li>
+                        <li><a href="#servicios" data-scroll>IA y Automatización</a></li>
+                        <li><a href="#servicios" data-scroll>Consultoría</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Línea inferior: derechos de autor -->
+            <div class="footer-bottom">
+                <p>&copy; 2025 NovaTec Solutions S.A. de C.V. Todos los derechos reservados.</p>
+                <p class="footer-academic">Proyecto Académico - CONALEP Ext. III | Grupo 607 | Diseño y Elaboración de Páginas Web</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================
+         BOTÓN VOLVER ARRIBA
+         Aparece al bajar la página, clic lleva al inicio
+         ============================================ -->
+    <button class="back-to-top" id="backToTop" aria-label="Volver arriba">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- ============================================
+         LIGHTBOX (VISOR DE IMÁGENES)
+         Ventana emergente para ver imágenes en tamaño
+         completo con navegación (anterior/siguiente)
+         ============================================ -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightboxClose" aria-label="Cerrar lightbox"><i class="fas fa-times"></i></button>
+        <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Imagen anterior"><i class="fas fa-chevron-left"></i></button>
+        <img src="" alt="" class="lightbox-img" id="lightboxImg">
+        <div class="lightbox-caption" id="lightboxCaption"></div>
+        <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Imagen siguiente"><i class="fas fa-chevron-right"></i></button>
+    </div>
+
+    <!-- ============================================
+         AUDIO AMBIENTAL (OCULTO)
+         Elemento de audio invisible que reproduce
+         música de fondo cuando el usuario lo activa
+         ============================================ -->
+    <audio id="ambientAudio" loop preload="auto">
+        <source src="ImagenesVideos/EfectoSonidoFondo.mp4" type="audio/mp4">
+    </audio>
+
+    <!-- ============================================
+         SCRIPTS EXTERNOS
+         Bibliotecas de JavaScript cargadas desde internet
+         ============================================ -->
+    <!-- AOS: animaciones al hacer scroll -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- ============================================
+         DETECTOR DE DISPOSITIVOS
+         Identifica el dispositivo y aplica clases CSS
+         específicas antes de que se renderice la página
+         ============================================ -->
+    <script src="js/device-detector.js"></script>
+    
+    <!-- Script propio con toda la funcionalidad -->
+    <script src="js/main.js"></script>
+</body>
+</html>
